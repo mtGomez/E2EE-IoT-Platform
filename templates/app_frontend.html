@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  	<link rel="stylesheet" href="{{ url_for('static', filename='asset_code.css') }}">
+	</head>
+	<body>
+		<h1>IoT platform</h1>
+
+			<form action="http://localhost:5000/Connect_to_sensor" method="POST">
+				<label form="sensor_connection">ID sensor to connect: </label>
+        		<input type="text" id="sensor_connection" name="sensor_connection" /><br>
+
+				<label form="Connect">Connect to IoT Sensor</label>
+				<button type="submit" class=cv_btn>Connect</button>
+			</form>
+			<form action="http://localhost:5000/Disconnect_to_sensor" method="POST">
+				<label form="sensor_removing">ID sensor to remove: </label>
+        		<input type="text" id="sensor_removing" name="sensor_removing" /><br>
+
+				<label form="Remove">Remove IoT Sensor</label>
+				<button type="submit" class=cv_btn>Remove</button>
+			</form>
+			<form action="http://localhost:5000/Reload_sensors" method="POST">
+				<label form="Reload">Reload sensors</label>
+				<button type="submit" class=cv_btn>Reload</button>
+			</form>
+			<h2>Dispositivos disponibles</h2>
+			 {% for sensor in sensor_list %}
+      			<p>{{ sensor }} </p>
+			 {% endfor %}
+
+		<h2>Dispositivos emparejados</h2>
+			{% for sensor in sensor_paired_list %}
+      			<p>{{ sensor }} </p>
+			 {% endfor %}
+	</body>
+</html>
